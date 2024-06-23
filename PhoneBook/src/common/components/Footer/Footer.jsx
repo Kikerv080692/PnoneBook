@@ -1,7 +1,9 @@
+import * as SC from './Footer.styled'
+
 export const Footer = () => {
     return (
-      <div>
+      <SC.Div>
         Footer
-      </div>
+      </SC.Div>
     )
-  }
+}
