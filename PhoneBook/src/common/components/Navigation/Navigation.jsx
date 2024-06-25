@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { logOut } from "../../../redux/auth/authOperations"
 
 
 export const Navigation = () => {
+const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(logOut())
+    }
+
     return (
+        <>
       <nav>
         <ul>
             <li>
@@ -18,6 +26,9 @@ export const Navigation = () => {
                 <NavLink to='register'>Register</NavLink>
             </li>
         </ul>
+        
       </nav>
+      <button type='button' onClick={handleLogout}>Logout</button>
+        </>
     )
   }

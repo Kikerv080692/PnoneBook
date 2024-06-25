@@ -2,12 +2,16 @@ import { useState } from "react";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import * as SC from "./Register.styled";
+import {useDispatch} from 'react-redux'
+import { register } from "../../../redux/auth/authOperations";
+
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const dispatch = useDispatch()
 
   const handleInputChange = (event) => {
     // console.log(event.target.placeholder)
@@ -31,8 +35,15 @@ export const Register = () => {
   const toggleShowPassword = () => {
     setIsShowPassword((prevState) => !prevState);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(register({name, email, password}))
+  }
+
+  
   return (
-    <SC.FormWrapper>
+    <SC.FormWrapper onSubmit={handleSubmit}>
       <SC.CloseIcon />
       <SC.Input
         type="text"
