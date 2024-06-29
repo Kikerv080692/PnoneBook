@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/authOperations";
 
 export const Login = () => {
-  const [email, setEmail] =useState('')
-  const [password, setPassword] =useState('')
+  const [email, setEmail] =useState('dp080692pva@gmail.com')
+  const [password, setPassword] =useState('08061992')
   const [isShowPassword, setIsShowPassword] = useState(false);
   const dispatch = useDispatch()
 
