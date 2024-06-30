@@ -36,12 +36,12 @@ export const Navigation = () => {
         )}
       </SC.NavList>
       {isLoggedIn && (
-        <>
+        <SC.UserSection>
+          <p>{user.name}</p>
           <SC.LogoutButton type="button" onClick={handleLogout}>
             Logout
           </SC.LogoutButton>
-          <p>{user.name}</p>
-        </>
+        </SC.UserSection>
       )}
     </SC.Nav>
   );

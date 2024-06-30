@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Nav = styled.nav`
   display: flex;
@@ -48,5 +48,16 @@ export const LogoutButton = styled.button`
 
   &:hover {
     background-color: #0056b3;
+  }
+`;
+export const UserSection = styled.div`
+  display: flex;
+  align-items: center;
+  
+
+  p {
+    margin-right: 15px;
+    margin-left: 15px;
+    font-weight: bold;
   }
 `;

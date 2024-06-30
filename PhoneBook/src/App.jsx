@@ -16,7 +16,8 @@ function App() {
   const { isRefreshing } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
-  });
+  }, [dispatch]);
+
   return isRefreshing ? (
     <b>Page is refreshing</b>
   ) : (
