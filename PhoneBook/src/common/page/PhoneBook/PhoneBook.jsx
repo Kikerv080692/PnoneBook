@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAddContactMutation } from "../../../redux/contacts/contactsOperations";
+import { ContactsList } from "./components/ContactsList";
 
 export const PhoneBook = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [addContact, {isLoading}] = useAddContactMutation()
+
 
   const handleInputChange = (event) => {
     const { placeholder, value } = event.target;
@@ -17,11 +21,22 @@ export const PhoneBook = () => {
         return;
     }
   };
+const handleSubmit = async (event) => {
+  event.preventDefault()
+  await addContact({
+    name, number
+  })
+}
+
+
   return (
-    <form>
-      <input type="text" placeholder="name" value={name}  />
-      <input type="text" placeholder="number" value={number} />
-      <button type="button">Save</button>
+    <>
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="name" value={name} onChange={handleInputChange}  />
+      <input type="text" placeholder="number" value={number} onChange={handleInputChange} />
+      <button type="submit"  >Save</button>
     </form>
+    <ContactsList/>
+    </>
   );
 };

@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { contactsApi } from "./contacts/contactsOperations";
 
 const middleware = getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -18,6 +19,7 @@ const middleware = getDefaultMiddleware => [
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    contactsApi.middleware
   ];
 
 const authPersistConfig = {
@@ -29,6 +31,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     [authSlice.name]: persistReducer(authPersistConfig, authSlice.reducer),
+    [contactsApi.reducerPath]: contactsApi.reducer
   },
   middleware
 });
