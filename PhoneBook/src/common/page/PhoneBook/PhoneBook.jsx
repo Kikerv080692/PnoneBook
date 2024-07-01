@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useAddContactMutation } from "../../../redux/contacts/contactsOperations";
 import { ContactsList } from "./components/ContactsList";
 

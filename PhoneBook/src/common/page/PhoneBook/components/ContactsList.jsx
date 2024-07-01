@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDeleteContactMutation, useGetContactsQuery } from "../../../../redux/contacts/contactsOperations"
+import { Modal } from "../../../components/Modal/Modal"
 
 export const  ContactsList = () => {
     const [openModals, setOpenModals] = useState(false)
@@ -29,6 +30,9 @@ const toggleOpenModals = () => {
                 <button type='button' onClick={toggleOpenModals}>Change</button>
             </li>
         )
+}
+{
+    openModals && <Modal toggleOpenModals={toggleOpenModals} />
 }
     
      
