@@ -50,7 +50,7 @@ export const contactsApi = createApi({
     updateContact: builder.mutation({
       query: ({ id, name, number }) => ({
         url: `/contacts/${id}`,
-        method: 'PUT',
+        method: 'PATCH',
         data: { name, number },
       }),
       invalidatesTags: ['contacts']

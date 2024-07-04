@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import { useUpdateContactMutation } from "../../../redux/contacts/contactsOperations";
 
-export const Modal = ({ toggleOpenModals, data, onSave }) => {
-  const [name, setName] = useState(data?.name || "");
-  const [number, setNumber] = useState(data?.number || "");
 
-  useEffect(() => {
-    if (data) {
-      setName(data.name || "");
-      setNumber(data.number || "");
-    }
-  }, [data]);
-console.log(2, data)
-  const handleSave = (e) => {
-    onSave(data.id, name, number);
-    toggleOpenModals();
+export const Modal = ({ toggleOpenModals, nameData, id, numberData}) => {
+  const [name, setName] = useState(nameData);
+  const [number, setNumber] = useState(numberData);
+  const [updateContact, {isLoading}] = useUpdateContactMutation()
+
+
+  const handleInputChange = (e) => {
     const { placeholder, value } = e.target;
     switch (placeholder) {
       case "name":
@@ -27,30 +22,31 @@ console.log(2, data)
     }
   };
 
-  const handleClose = () => {
-    toggleOpenModals();
-  };
+  
+const handleSubmit = (e) => {
+  e.preventDefault()
+  updateContact({id, name, number})
+  toggleOpenModals()
+}
+ 
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleInputChange}
       />
       <input
         type="text"
         placeholder="number"
         value={number}
-        onChange={(e) => setNumber(e.target.value)}
+        onChange={handleInputChange}
       />
-      <button type="button" onClick={handleSave}>
+      <button type="submit" >
         Save
       </button>
-      <button type="button" onClick={handleClose}>
-        Close
-      </button>
-    </div>
+    </form>
   );
 };
