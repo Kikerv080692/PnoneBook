@@ -10,7 +10,7 @@ export const Modal = ({ toggleOpenModals, data, onSave }) => {
       setNumber(data.number || "");
     }
   }, [data]);
-
+console.log(2, data)
   const handleSave = (e) => {
     onSave(data.id, name, number);
     toggleOpenModals();
@@ -24,7 +24,6 @@ export const Modal = ({ toggleOpenModals, data, onSave }) => {
         return;
       default:
         return;
-        console.log(3, name)
     }
   };
 

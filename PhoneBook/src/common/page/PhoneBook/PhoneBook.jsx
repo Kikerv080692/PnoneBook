@@ -34,7 +34,7 @@ const handleSubmit = async (event) => {
     <form onSubmit={handleSubmit}>
       <input type="text" placeholder="name" value={name} onChange={handleInputChange}  />
       <input type="text" placeholder="number" value={number} onChange={handleInputChange} />
-      <button type="submit"  >Save</button>
+      <button type="submit">Save</button>
     </form>
     <ContactsList/>
     </>
