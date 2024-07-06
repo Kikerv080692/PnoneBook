@@ -8,7 +8,7 @@ export const Overlay = styled.div`
   left: 0;
   z-index: 20;
 
-  background-color: ${p => p.theme.colors.backdropBackground};
+  background-color: black;
 `;
 
 export const Inner = styled.div`

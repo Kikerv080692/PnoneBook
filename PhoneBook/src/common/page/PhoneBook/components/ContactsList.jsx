@@ -6,26 +6,30 @@ import {
 } from "../../../../redux/contacts/contactsOperations";
 import { Modal } from "../../../components/Modal/Modal";
 import { ContactListItem } from "./ContactListItem/ContactListItem";
+import { CastomModal } from "../../../components/Modal/CastomModal";
+import { Filter } from "../../../components/Filter/Filter";
+import {useSearchParams} from 'react-router-dom'
+
 
 export const ContactsList = () => {
   const [openModals, setOpenModals] = useState(false);
   
   const [updateContact, { isLoading: isUpdating }] = useUpdateContactMutation();
   const { data } = useGetContactsQuery();
-  console.log(1, data);
+    const [searchParams] = useSearchParams();
+    const searchContact = searchParams.get('contact') ?? ''
 
+    const renderContact = data?.filter((contact) => contact.name.toLowerCase().includes(searchContact.toLowerCase()))
 
  
   return (
+    <>
+    <Filter/>
     <ul>
-      {data?.map(({ name, id, number }) => (
+      {renderContact?.map(({ name, id, number }) => (
        <ContactListItem key={id} name={name} id={id} number={number} />
       ))}
-      {openModals && (
-        <Modal
-          toggleOpenModals={toggleOpenModals}
-        />
-      )}
     </ul>
+    </>
   );
 };
